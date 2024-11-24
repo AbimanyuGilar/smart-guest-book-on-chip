@@ -33,6 +33,7 @@ $guests = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <th>Agency</th>
                         <th>Email</th>
                         <th>Phone</th>
+                        <th>Date</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -43,6 +44,7 @@ $guests = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             <td><?= htmlspecialchars($guest['agency']); ?></td>
                             <td><?= htmlspecialchars($guest['email']); ?></td>
                             <td><?= htmlspecialchars($guest['phone']); ?></td>
+                            <td><?= htmlspecialchars($guest['date']); ?></td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>
