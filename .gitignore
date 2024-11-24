@@ -1,3 +1,5 @@
 db_connection.php
 submit_form.php
 download.php
+admin.php
+login.php
