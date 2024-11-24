@@ -35,7 +35,7 @@
 <body class="d-flex flex-column justify-content-center align-items-center fullscreen-center">
   <h1>Thank you for registering</h1>
   <img src="img/centang.png" alt="Centang" class="img-fluid" style="max-width: 300px; max-height: 300px;">
-  <h1>ID : </h1>
+  <a href="feedback.php" class="btn btn-primary">Feedback</a>
 </body>
 
 </html>
