@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Smart Guest Book on Chip</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-image: url("img/gedung kuliah terpadu.jpg");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.7);
+            z-index: -1;
+        }
+
+        .form-control {
+            background-color: transparent;
+            border: none;
+            border-bottom: 2px solid black;
+            border-radius: 0;
+            box-shadow: none;
+        }
+
+        .form-control:focus {
+            background-color: transparent;
+            outline: none;
+            border-bottom: 2px solid #000080;
+            box-shadow: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-md">
+        <div class="row">
+            <div style="background-color: #0f1632;"
+                class="d-flex justify-content-around text-white container p-5 rounded-5 rounded-top-0 d-flex align-items-center">
+                <div>
+                    <h5><strong>Welcome</strong></h5>
+                    <h5><strong>Polines Guest Book</strong></h5>
+                </div>
+                <img src="img/Logo-Polines.png"
+                    alt="Logo Polines" style="width: 50px; height: auto; margin-right: 20px;">
+            </div>
+            <div class="row mt-5">
+                <div class="col">
+                    <form class="align-middle" action="submit_form.php" method="POST">
+                        <div class="mb-3">
+                            <label for="name" class="form-label"><strong>Name</strong></label>
+                            <input type="text" class="form-control" id="name" name="name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="agency" class="form-label"><strong>Agency/School</strong></label>
+                            <input type="text" class="form-control" id="agency" name="agency" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label"><strong>Email</strong></label>
+                            <input type="email" class="form-control" id="exampleInputEmail1" name="email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="phone" class="form-label"><strong>Phone Number</strong></label>
+                            <input type="tel" class="form-control" id="phone" name="phone" required>
+                        </div>
+                        <div class="d-flex justify-content-center">
+                            <button style="background-color: #0f1632; color: white;" type="submit" class="btn rounded-pill px-5"><strong>Register</strong></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="row mt-5">
+                <div class="d-flex justify-content-center">
+                    <p><strong class="opacity-50">Copyright Office FO | 2024</strong></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
