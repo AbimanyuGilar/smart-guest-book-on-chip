@@ -7,7 +7,7 @@ if (!isset($_SESSION['user_id'])) {
 }
 
 include('db_connection.php');
-$stmt = $conn->query("SELECT id, name, agency, email, phone FROM guest");
+$stmt = $conn->query("SELECT id, name, agency, email, phone, date FROM guest");
 $guests = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
