@@ -8,23 +8,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = $_POST['username'] ?? '';
     $password = $_POST['password'] ?? '';
 
-    $sql = "SELECT id, password FROM users WHERE username = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param('s', $username);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    $user = $result->fetch_assoc();
+    try {
+        $sql = "SELECT id, password FROM users WHERE username = :username";
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(':username', $username, PDO::PARAM_STR);
+        $stmt->execute();
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    if ($user && hash('sha256', $password) === $user['password']) {
-        $_SESSION['user_id'] = $user['id'];
-        header('Location: admin.php');
-        exit;
-    } else {
-        $error = 'Username atau password salah.';
+        if ($user && hash('sha256', $password) === $user['password']) {
+            $_SESSION['user_id'] = $user['id'];
+            header('Location: admin.php');
+            exit;
+        } else {
+            $error = 'Username atau password salah.';
+        }
+    } catch (PDOException $e) {
+        $error = 'Terjadi kesalahan: ' . $e->getMessage();
     }
-    $stmt->close();
 }
-$conn->close();
 ?>
 
 <!DOCTYPE html>

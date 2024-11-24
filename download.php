@@ -7,10 +7,13 @@ if (!isset($_SESSION['user_id'])) {
 
 include('db_connection.php');
 
-$sql = "SELECT * FROM guest";
-$result = $conn->query($sql);
+try {
+    // Query untuk mengambil semua data dari tabel guest
+    $sql = "SELECT * FROM guest";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
 
-// Menyiapkan header untuk file CSV
+    // Menyiapkan header untuk file CSV
     header('Content-Type: text/csv');
     header('Content-Disposition: attachment; filename="data.csv"');
 
@@ -18,17 +21,21 @@ $result = $conn->query($sql);
     $output = fopen('php://output', 'w');
 
     // Menulis header kolom (nama kolom tabel)
-    if ($result->num_rows > 0) {
-        $row = $result->fetch_assoc();
+    if ($stmt->rowCount() > 0) {
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
         fputcsv($output, array_keys($row)); // Menulis header kolom
 
         // Menulis data
-        $result->data_seek(0); // Reset pointer hasil query
-        while ($row = $result->fetch_assoc()) {
+        $stmt->execute(); // Menjalankan ulang query untuk mengembalikan pointer
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
             fputcsv($output, $row); // Menulis data
         }
     }
 
     fclose($output);
     exit;
+} catch (PDOException $e) {
+    echo "Error: " . $e->getMessage();
+    exit;
+}
 ?>
